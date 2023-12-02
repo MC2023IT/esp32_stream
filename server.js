@@ -13,16 +13,16 @@ admin.initializeApp({
 });
 
 const app = express();
-const _PORT = 65080;
+const WS_PORT = 65080;
 const HTTP_PORT = 80;
 
-const Server = new WebSocket.Server({ port: _PORT }, () => console.log(` Server is listening at ${_PORT}`));
+const wsServer = new WebSocket.Server({ port: WS_PORT }, () => console.log(`WS Server is listening at ${WS_PORT}`));
 
 let connectedClients = [];
 
-Server.on('connection', (ws, req) => {
+wsServer.on('connection', (ws, req) => {
   console.log('Connected');
-  connectedClients.push(s);
+  connectedClients.push(ws);
 
   ws.on('message', async (data) => {
     connectedClients.forEach((ws, i) => {
