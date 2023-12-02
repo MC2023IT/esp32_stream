@@ -89,5 +89,3 @@ app.get('/latestImage', async (req, res) => {
 
 app.get('/client', (req, res) => res.sendFile(path.resolve(__dirname, './client.html')));
 app.listen(HTTP_PORT, () => console.log(`HTTP server listening at ${HTTP_PORT}`));
-                                                                                                                  63,1          57%
-                                                                                                                  1,1           Top
