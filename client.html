@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client</title>
+</head>
+<body>
+  <img id="latestImage">
+  <script>
+    const img = document.getElementById('latestImage');
+
+    // Function to update the image source
+    const updateImage = () => {
+      // Append a timestamp to the URL to force refresh
+      const timestamp = new Date().getTime();
+      img.src = `http://35.199.178.64/latestImage?timestamp=${timestamp}`;
+    };
+
+    // Initial image update
+    updateImage();
+
+    // Set interval to update the image every 0.5 seconds (500 milliseconds)
+    setInterval(updateImage, 500);
+  </script>
+</body>
+</html>
