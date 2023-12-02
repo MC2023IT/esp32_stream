@@ -1,6 +1,6 @@
 const path = require('path');
 const express = require('express');
-const WebSocket = require('ws');
+const WebSocket = require('wss');
 const admin = require('firebase-admin');
 
 // Use the provided path to your Firebase service account JSON file
@@ -20,14 +20,14 @@ const wsServer = new WebSocket.Server({ port: WS_PORT }, () => console.log(`WS S
 
 let connectedClients = [];
 
-wsServer.on('connection', (ws, req) => {
+wsServer.on('connection', (wss, req) => {
   console.log('Connected');
-  connectedClients.push(ws);
+  connectedClients.push(wss);
 
-  ws.on('message', async (data) => {
-    connectedClients.forEach((ws, i) => {
-      if (ws.readyState === ws.OPEN) {
-        ws.send(data);
+  wss.on('message', async (data) => {
+    connectedClients.forEach((wss, i) => {
+      if (wss.readyState === wss.OPEN) {
+        wss.send(data);
       } else {
         connectedClients.splice(i, 1);
       }
